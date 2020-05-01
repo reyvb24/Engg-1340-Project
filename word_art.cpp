@@ -3,6 +3,18 @@
 
 using namespace std;
 
+void print_warrior(string character[][25]) {
+	for (int i = 0; i<25; i++) {
+        cout<<character[0][i];
+    }
+}
+
+void print_mage(string character[][25]) {
+	for (int i = 0; i<25; i++) {
+        cout<<character[1][i];
+    }
+}
+
 int main() {
     string character[5][25];
 
@@ -31,9 +43,6 @@ int main() {
 	character[0][22] = " /S./         '`::::::/::::/OOOOOOOOOOOO.|O|O||\n";
 	character[0][23] = "/S/      .:::::::::::/::::/OOOOOOOOOOOOO.|O|O|\\\n";
     character[0][24] = "/S/  \\'''''''::::::::|:::::|OOOOOOOOOOOOO|O|O\\\\\\\n";
-    for (int i = 0; i<25; i++) {
-        cout<<character[0][i];
-    }
 	character[1][0] = "      /\\ \n";
 	character[1][1] = "  .:::::\n";
 	character[1][2] = " /:::::|\n";
@@ -59,8 +68,5 @@ int main() {
 	character[1][22] = "                   |:|                   \\OOOOOOOO\\OOOOOOOO|OO|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\.\n";
 	character[1][23] = "                   |::|                  |OOOOOOOO|OOOOOOOO|OO|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\.\n";
 	character[1][24] = "                    \\::\\                 /OOOOOOOOO\\OOOOOOOO|O||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\.\n";
-	for (int i = 0; i<25; i++) {
-        cout<<character[1][i];
-    }
     return 0;
 }
