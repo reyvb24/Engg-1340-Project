@@ -13,6 +13,8 @@ class player {
         int damage;
         int health;
         int mana;
+        int coin;
+        string inventory[5];
 };
 
 class enemy {
