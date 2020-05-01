@@ -1,5 +1,7 @@
 #include<iostream>
 #include<string>
+#ifndef SHOP_H
+#define SHOP_H
 
 using namespace std;
 
@@ -66,3 +68,4 @@ int main() {
     cout<<endl<<hybrid.name<<", attack boost: "<<hybrid.attack<<", health gain: "<<hybrid.health<<", descriptions: "<<hybrid.descriptions<<endl;
     cout<<endl<<flee.name<<", price: "<<flee.price<<", description: "<<flee.description<<endl;
 }
+#endif
