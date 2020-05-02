@@ -14,7 +14,7 @@ class player {
         int health;
         int mana;
         int coin;
-        string inventory[5];
+        string inventory[5] = {"none","none","none","none","none"};
 };
 
 class enemy {
