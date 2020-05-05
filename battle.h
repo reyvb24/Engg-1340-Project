@@ -27,8 +27,9 @@ void battle(enemy & creep, player & player1){
             cout << "1. Attack" << endl;
             cout << "2. Use item" << endl;
             cout << "3. Use spells" << endl;
+            cout << "4. Recharge mana" << endl;
             cin >> input;
-            while ((input != 1) || (input != 2) || (input != 3)) {
+            while ((input != 1) || (input != 2) || (input != 3) || (input != 4) {
                 cout << "Invalid input! Please try again" << endl;
                 cin >> input;
             }
@@ -57,6 +58,16 @@ void battle(enemy & creep, player & player1){
                 }
                 else{
                     player1.useSpells(spellOption);
+                }
+            }
+            else if(input == 4) {
+                playerMana += 50;
+                if(playerMana > player1.mana) {
+                    cout << "Mana full!" << endl;
+                    playerMana -= (playerMana - player1.mana);
+                }
+                else {
+                cout << "You charged your mana for this turn! Gained 50 mana!" << endl;
                 }
             }
             counter += 1;
