@@ -88,4 +88,58 @@ void secondErrand(player & player1) {
 
 }
 
+void thirdErrand(player & player1) {   // riddle type minigame
+    int correctAnswers = 0;
+    string answer1 = "coin", answer2 = "fire", guess1, guess2;
+    string response;
+    cout << "You walk toward the end of the village near the crossroads, at the crossroads you see a jester calling you over." << endl;
+    cout << "Jester: \"Aye, you over there! You're not from around 'ere are ya? Come 'ere lets have a chat!\"" << endl;
+    cout << "(Type \"walk\" to approach the man)" << endl;
+    cin >> response;
+    cout << "Jester: \"Greetings! I'm the village jester! Now, i know you're busy off fighting these monsters and such, but spare some time for me will ya? \"" << endl;
+    cout << "Jester: \"I'll give you a couple of riddles, if you can answer 'em, I'll make you worth your while.\"" << endl;
+    cout << "(Type \"ok\" to play along with the jester)" << endl;
+    cin >> response;
+    cout << "Jester: \"Alright, first riddle. What has a head and a tail, but no body?\"" << endl;
+    cout << "Answer: ";
+    cin >> guess1;
+    cout << endl;
+    if(guess1 == answer1) {
+        correctAnswers += 1;
+        cout << "Jester: \"Hmm, lucky guess. Alright, I'll give you something harder\"" << endl;
+    }
+    else if(guess1 != answer1) {
+        cout << "Jester: \"Hahaha! Tricky one ain't it? I'll give you another chance\"" << endl;
+    }
+    cout << "Jester: \"Next riddle. Errhmm, what is not alive but grows, does not breath but needs air?\"" << endl;
+    cout << "Answer: ";
+    cin >> guess2;
+    cout << endl;
+    if(guess2 == answer2) {
+        correctAnswers += 1;
+        cout << "Jester: \"Huh, thats the right answer, pretty good\"" << endl;
+    }
+    else if(guess2 != answer2) {
+        cout << "Jester: \"No no no, i don't think thats the right one\"" << endl;
+    }
+    if(correctAnswers == 0) {
+        cout << "Jester: \"Har Har Har, i guess you're not that smart after all, here a little gold for the trouble, don't lose them on the way home!\"" << endl;
+        player1.coin += 50;
+        player1.xp += 50;
+        print_coin_xp(player1, 50, 50);
+    }
+    else if(correctAnswers == 1) {
+        cout << "Jester: \"Huh, not to shabby boy. Just as i promised, some gold for your trouble.\"" << endl;
+        player1.coin += 70;
+        player1.xp += 70;
+        print_coin_xp(player1, 70, 70);
+    }
+    else if(correctAnswers == 2) {
+        cout << "Jester: \"Wow! You're pretty clever huh? Here take some extra gold, you've earned it!\"" << endl;
+        player1.coin += 90;
+        player1.xp += 90;
+        print_coin_xp(player1, 90, 90);
+    }
+}
+
 #endif
