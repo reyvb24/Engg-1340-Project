@@ -9,6 +9,10 @@ We are planning to make a RPG (Role Playing Game) which will have items in the g
 
 ### Features in the Game
 The game would feature three types of classes for the character that are going to be used in the game; player, enemy, and boss.  Generating the types of enemies in battles and the quests given to the player will be random. The game will also feature a turn-based battle mode where the player would go against different enemies. 
+Non standard c++ libraries used:
+- string = to obtain inputs from the user, to store strings in various data structures in the game, and to make word_art.
+- cstdlib
+- ctime
 
 ### Rules
 - Player will have a level to determine the stats of his/her character. Player can upgrade their level by gaining experience points which can be earned by doing various activities in the game (i.e. by fighting enemies and doing errands). Gaining level will increase the character's basic stats.
@@ -19,7 +23,7 @@ The game would feature three types of classes for the character that are going t
 ### Battle Rules:
 - Player will take turn alternately with the enemy in a 1 on 1 battle, in which the player can choose to regain mana by (some number), attack , use items (from shop), use spells (by spending mana)
 ### Code Requirements
-- Generation of random events : The quests given to the player and the enemies that the player encounters in the game will be random.
+- Generation of random events : The quests given to the player and the enemies that the player encounters in the game will be random, however there will only be one word_art for standard enemies and boss.
 - Data structures for storing game status : The types of classes and enemies will use the class data structure to handle characteristics and interactions of the character.
 - Dynamic memory management : The game will make use of pointers and dynamic arrays, especially for the word_art.
 - File I/O : There is an autosave feature, it will save the stats after every turn in the main game (i.e. amount of gold possessed, levels, and experience points). This will be saved to a “game_data.txt” file and can be loaded again to the game.
