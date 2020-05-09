@@ -22,48 +22,48 @@ void poisonArrow(int & poisonCounter) {//function to use poison arrow
     cout<< "You used the poison arrow! Enemy's health decreases by 50 for the enemy's next 3 turns!"<<endl;
 }
 
-void poison_damage(int & enemyHealth) {//function for poison damage
+void poison_damage(int & enemyHealth) {//function for using poison damage
     enemyHealth -= 10;
     cout << "The poison starts to kick in. Enemy lose 50 health" << endl;
 }
 
-void olympusBlade(int & enemyhealth, int damage) {
+void olympusBlade(int & enemyhealth, int damage) {//function for using olympus blade 
     enemyhealth-=damage;
     cout<<"You used the olympus blade! Enemy suffers 350 hp damage!"<<endl;
 }
 
-void spiritOfTheGods(int heal, int & playerHealth, int damage, int & playerAttack) {
+void spiritOfTheGods(int heal, int & playerHealth, int damage, int & playerAttack) {//function for using spirit of the gods
     playerHealth+=heal;
     playerAttack+=damage;
     cout<<"The spirit of the Gods has been summoned upon you! Your health will increase by 50 and your attack damage will increase by 100 for the rest of the battle!"<<endl;
 }
-void heavyBlow (int & cooldown, int & mana) {
+void heavyBlow (int & cooldown, int & mana) {//function for using heavyblow
     cooldown = 5;
     mana -= 40;
     cout << "You used heavy blow! Deals 2.5X critical for next attack" << endl;
 }
 
-void bloodlust (int & cooldown, int & mana) {
+void bloodlust (int & cooldown, int & mana) {//function for using bloodlust
     cooldown = 5;
     mana -= 35;
     cout << "You used bloodlust! Next attack has 25 percent lifesteal" << endl;
 }
 
-void fireBlast (int & enemyHealth, int & cooldown, int & mana) {
+void fireBlast (int & enemyHealth, int & cooldown, int & mana) {//function for using fire blast
     enemyHealth -= 75;
     cooldown = 3;
     mana -= 24;
     cout << "You used fire blast! Enemy suffers 75 damage" << endl;
 }
 
-void thunderWrath (int & cooldown, int & mana, int & thunderCounter) {
+void thunderWrath (int & cooldown, int & mana, int & thunderCounter) {//function for using thunder wrath
     thunderCounter = 4;
     cooldown = 7;
     mana -= 70;
     cout << "The nimbus cloud has arrived! Enemy is electrocuted for 4 turns" << endl;
 }
 
-void essenceBeam (int & enemyHealth, int & turn, int & cooldown, int & mana) {
+void essenceBeam (int & enemyHealth, int & turn, int & cooldown, int & mana) {//function for using essence beam
     enemyHealth -= 300;
     turn += 1;
     mana -= 100;
@@ -71,9 +71,8 @@ void essenceBeam (int & enemyHealth, int & turn, int & cooldown, int & mana) {
     cout << "The air vibrates, a beam stunned and damaged the enemy!" << endl;
 }
 
-void electrocuted(int & enemyhealth) {
+void electrocuted(int & enemyhealth) {//function if the enemy is electrocuted
     enemyhealth -= 40;
     cout << "Bzzz! Lighting strikes the enemy!" << endl;
 }
-// more spells and item effects to be added
 #endif
