@@ -18,7 +18,7 @@ Non standard c++ libraries used:
 - Player will have a level to determine the stats of his/her character. Player can upgrade their level by gaining experience points which can be earned by doing various activities in the game (i.e. by fighting enemies and doing errands). Gaining level will increase the character's basic stats.
 - Player will be given actions to choose(battle, final, shop, sleep, and doing errands), in which some action will increase the player's experience points and coins respectively.
 - Each type of character has their own strengths and weaknesses.
-- If the player dies in a battle, he/she will vontinue from the previous saved data.
+- If the player dies in a battle, he/she will continue from the previous saved data.
 
 ### Battle Rules:
 - Player will take turn alternately with the enemy in a 1 on 1 battle, in which the player can choose to regain mana by (some number), attack , use items (from shop), use spells (by spending mana)
