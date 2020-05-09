@@ -255,7 +255,7 @@ void battle(enemy &creep, player &player1){
                         backtrack = true;
                         cout << "Not enough mana! Choose another action" << endl;
                     }
-                    if(onCooldown == true) {
+                    else if(onCooldown == true) {
                         counter -= 1;
                         backtrack = true;
                         cout << "Spell on cooldown! Choose another action" << endl;
