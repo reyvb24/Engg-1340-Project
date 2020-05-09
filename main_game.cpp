@@ -9,7 +9,7 @@
 #include "errands.h"
 
 using namespace std;
-void title() {
+void title() { //print the title of the game
     cout<<":::.         .:::    .::::::::::::.   ::::::::::::.   :::::::::::.    .::::::::::::.   ::::::::::::."<<endl;
     cout<<":::::.     .:::::    ::::      ::::   ::::     ::::   ::::      :::   ::::      ::::   ::::     ::::"<<endl;
     cout<<":::   :: ::   :::    ::::      ::::   ::::    ::::    ::::      :::   ::::      ::::   ::::    ::::"<<endl;
@@ -23,7 +23,7 @@ void title() {
     cout<<"                                           `:::   :::' "<<endl;
     cout<<"                                             `:::::' "<<endl<<endl;
 }
-void autosave(player &player1) {
+void autosave(player &player1) { //to autosave player's progress
     ofstream fout;
     fout.open("game_data.txt");
     fout<<player1.coin<<endl;
@@ -37,7 +37,7 @@ void autosave(player &player1) {
     fout<<player1.mana<<endl;
     fout<<player1.name<<endl;
 }
-void startgame(player &player1) {
+void startgame(player &player1) { //function to choose whether to start a new game or load previous game
     title();
     string choice;
     cout<<"Hello! Welcome to the game! Please type 'new game' to start a new game or 'load game' to load previous data"<<endl<<"choice: ";
@@ -112,7 +112,7 @@ void startgame(player &player1) {
         }
     }
 }
-void print_instructions() {
+void print_instructions() { //print the options for the player choose for each action
     cout<<"Defeat the final boss in 'final' to complete the game!"<<endl;
     cout<<"1. type 'fight' to fight creeps in the village"<<endl;
     cout<<"2. type 'shop' to go shopping"<<endl;
@@ -121,7 +121,7 @@ void print_instructions() {
     cout<<"5. type 'quit' to quit the game\n"<<endl;
 }
 
-string input(string user_input) {
+string input(string user_input) { //to input player's inputs
     cout<<"------------------------------------------"<<endl;
     cin>>user_input;
     cout<<"------------------------------------------"<<endl;
@@ -129,14 +129,14 @@ string input(string user_input) {
 }
 
 
-int main() {
+int main() { //main function of the program
     player player1;
     startgame(player1);
     string user_input;
     print_instructions();
-    bool result = false;
+    bool result = false;//determines whether the game is finished yet or not
     user_input = input(user_input);
-    while (result!=true) {
+    while (result!=true) { //while loop of the game
         if (user_input=="fight") {
             enemy creep;
             battle(creep, player1);
