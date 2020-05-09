@@ -96,7 +96,7 @@ void useItems(string choice, int & playerHealth, int & enemyHealth, int & counte
             }
         }
         else if(choice == "olympus blade") {
-            olympusBlade(enemyHealth, 100);
+            olympusBlade(enemyHealth, attack_elixir[2].attack);
             for(int j = 0; j < 5; ++j) {
                 if(player1.inventory[j] == "olympus blade") {
                     player1.inventory[j] = "none";
@@ -113,6 +113,9 @@ void useItems(string choice, int & playerHealth, int & enemyHealth, int & counte
                 }
             }
         }
+    }
+    else if ( choice=="back") {
+        counter-=1;
     }
     else {
         if (check==0 && choice!="back") {
