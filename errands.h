@@ -7,12 +7,18 @@
 #define ERRANDS_H
 using namespace std;
 
-
+// Function Purpose: to print additional xp and coins to player after completing a quest
+// Takes the player class as input and the xp and coin to be added
+// outputs the additional and current xp and coin of the player
 void print_coin_xp (player &player1, int coin_addition, int xp_addition) {
     cout<<"coin(s) earned: "<<coin_addition<<", current coin(s): "<<player1.coin<<endl;
     cout<<"xp gained: "<<xp_addition<<", current xp: "<<player1.xp<<endl;
 }
 
+// All three function below are similar
+// Function Purpose: small errands the player can do to add xp and coin
+// takes the player class as argument
+// returns additional coin and xp to the player
 void firstErrand(player & player1) {
     srand(time(NULL));
     string options[4] = {"rock", "tree", "bush", "shack"};
@@ -135,6 +141,10 @@ void thirdErrand(player & player1) {   // riddle type minigame
         print_coin_xp(player1, 90, 90);
     }
 }
+
+// Function purpose: to randomly select which errand to run
+// Takes the player class as argument
+// Runs one of the three errand functions
 void runErrand (player &player1) {
     int errand = rand() %3 + 1;
     if (errand==1) {
