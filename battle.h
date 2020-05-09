@@ -308,7 +308,7 @@ void battle(enemy &creep, player &player1){
         cout << "Whew, Got out of there safely!" << endl;
     }
 }
-int final_battle(boss &final, player &player1){
+int final_battle(boss &final, player &player1){ //the codes here are pretty much the same as in function battle
     cout << "You have decided to fight " << final.name << " to save the village from terror!" << endl <<"We wish all the best for you, "<<player1.name<<"!"<<endl;
     print_warrior();
     print_boss();
@@ -459,13 +459,14 @@ int final_battle(boss &final, player &player1){
             counter += 1;
         }
     }
-    if(enemyHealth <= 0) {
+    if(enemyHealth <= 0) { //if the player emerge victorious
         victory();
         cout<<endl;
-        cout << "Great work! You have saved the village from " << final.name << endl;
+        cout << "Great work! You have saved the village from " << final.name << "!" << endl;
+	cout<<"Villagers: 'We thank you abundantly from the bottom of our hearts!'" <<endl;
         return true;
     }
-    else if(playerHealth <= 0) {
+    else if(playerHealth <= 0) { //if the player lose
         cout << "Game Over! Try again later!" << endl << endl;
         return false;
     }
