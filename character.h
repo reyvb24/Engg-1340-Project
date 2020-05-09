@@ -2,6 +2,8 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include "shop.h"
+#include "itemsNspells.h"
 #ifndef CHARACTER_H
 #define CHARACTER_H
 using namespace std;
@@ -12,12 +14,12 @@ class player {
         string name;
         string wordart[25];
         string type;
-        int xp = 0;
-        int level = 0;
-        int damage = 100;
-        int health = 1000;
-        int mana = 100;
-        int coin = 10;
+        int xp;
+        int level = xp/100;
+        int damage;
+        int health;
+        int mana;
+        int coin;
         string inventory[5] = {"none", "none", "none", "none", "none"};
         // functions of player
         int attack(string name) {   // normal attack 
@@ -26,81 +28,73 @@ class player {
         }
         void printCharacter() { // printing character wordart
             for(int i = 0; i < 25; ++i) {
-                cout << wordart[0][i] << endl;
+                cout << wordart[i] << endl;
             }
         }
-        void showItems( player &player1) {
+        void showItems() {
             cout << "Choose a potion!" << endl;
             for(int i = 0; i < 5; ++i) {    // alphabetically sorting potion inventory
                 for(int j = 0; j < 5-i-1; ++j) {
-                    if(inventory[j][0] > player1.inventory[j+1][0]) {
-                        string temp = player1.inventory[j];
-                        player1.inventory[j] = player1.inventory[j+1];
-                        player1.inventory[j+1] = temp;
+                    if(inventory[j][0] > inventory[j+1][0]) {
+                        string temp = inventory[j];
+                        inventory[j] = inventory[j+1];
+                        inventory[j+1] = temp;
                     }
                 }
             }
-            for (int i = 0; i<5; i++) {
-                if (i!=4) {
-                    cout<<i+1<<". "<<player1.inventory[i]<<endl;
-                }
-                else {
-                    cout<<i+1<<". "<<player1.inventory[i]<<endl<<endl;
-                }
-            }
-        }
-        void addXPandCoin (int xpgain, int addcoin, player &player1) {
-            player1.xp= player1.xp + xpgain;
-            player1.coin= player1.coin + addcoin;
-        }
-        void addlevel (player &player1) {
-            if (player1.xp>100 && player1.level<=10) {
-                player1.level++;
-                player1.health+= 60;
-                player1.damage+= 8;
-                player1.mana+= 20;
-                player1.xp = player1.xp%100;
-                cout<<"\n----------------------------------\nCongratulations! you have reached the next level!"<<endl;
-                cout<<"Health gain = 20, health = "<<player1.health<<endl;
-                cout<<"Damage gain = 8, damage = "<<player1.damage<<endl;
-                cout<<"Mana gain = 20, mana = "<<player1.mana<<endl<<"----------------------------------\n\n";
-            }
         }
         void showLevel() {  // showing level progress
-            cout << "----------------------------------\nLevel: " << level << endl;
+            cout << "Level: " << level << endl;
             if(level == 10) {
                 cout << "Max level reached!" << endl;
             }
             else {
-                cout << "Progress: " << xp % 100 << "/100 to level " << level+1 << endl << "----------------------------------\n\n";
+                cout << "Progress: " << xp % 100 << "/100" << endl;
             }
         }
         void showSpells() { // show avaliable spells according to class 
-            cout << "-----------------------------------------------------------------------------------------" << endl;
-            cout << "heavy blow" << endl;
-            cout << "Description: Gathers strength to swing, adds 2.5x critical damage for your next attack" << endl;
-            cout << "Note: Buff expires if not used in next attack" << endl;
-            cout << "Cost: 40 mana | Cooldown: 5 turns" << endl;
-            cout << "-----------------------------------------------------------------------------------------" << endl;
-            cout << "bloodlust" << endl;
-            cout << "Description: Empowered by enemy blood, adds 25 percent lifesteal to your next attack" << endl;
-            cout << "Note: Buff expires if not used in next attack" << endl;
-            cout << "Cost: 35 mana | Cooldown: 5 turns" << endl;
-            cout << "-----------------------------------------------------------------------------------------" << endl;
-            cout << "fire blast" << endl;
-            cout << "Description: A powerful spell with low cooldown, deals 75 damage" << endl;
-            cout << "Cost: 25 mana | Cooldown: 3 turns" << endl;
-            cout << "-----------------------------------------------------------------------------------------" << endl;
-            cout << "thunder wrath" << endl;
-            cout << "Description: Calls a nimbus cloud to battle, deals 40 damage to enemies for 4 turns" << endl;
-            cout << "Cost: 70 mana | Cooldown: 7 turns" << endl;
-            cout << "-----------------------------------------------------------------------------------------" << endl;
-            cout << "essence beam" << endl;
-            cout << "Description: Concentrates surrounding magical essence, deals 300 damage and stuns" << endl;
-            cout << "Cost: 100 mana | Cooldown: 9 turns" << endl;
-            cout << "-----------------------------------------------------------------------------------------" << endl;
+            if(type == "warrior") {
+                cout << " " << endl;
+            }
+            else if(type == "mage") {
+
+            }
         }
-        void healthManaDamageBar(int currentHealth, int currentMana, int currentDamage) {
+        void useItems(string choice, int & playerHealth, int & enemyHealth, int counter) {
+            for(int i = 0; i < amount_of_health_potions; ++i) { // health potion
+                if(choice == potions[i].name) {
+                    healthPotion(potions[i].health, playerHealth);
+                    for(int j = 0; j < 5; ++j) {
+                        if(inventory[j] == potions[i].name) {
+                            inventory[j] = "none";
+                        }
+                    }
+                }
+            }
+            if(choice == "stun attack") {
+                stunAttack(counter);
+                for(int j = 0; j < 5; ++j) {
+                    if(inventory[j] == "stun attack") {
+                        inventory[j] = "none";
+                    }
+                }
+            }
+            else if(choice == "poison arrow") {
+                poisonArrow(counter, enemyHealth);
+                for(int j = 0; j < 5; ++j) {
+                    if(inventory[j] == potions[i].name) {
+                        inventory[j] = "none";
+                    }
+                }
+            }
+            else if(choice == "olympus blade") {
+
+            }
+        }
+        void useSpells(string choice) {
+
+        }
+        void healthManaBar(int currentHealth, int currentMana) {
             int healthbar = currentHealth / (health / 10);
             int manabar = currentMana / (mana / 10);
             cout << "HP = ";
@@ -123,44 +117,27 @@ class player {
                 }
             }
             cout << " (" << currentMana << "/" << mana << ")" << endl;
-            cout<<"Damage: ";
-            cout<<currentDamage<<endl;
         }
 };
-string names [5] = {"Ogre", "Orc", "Creep", "Monster", "Ghouls"};
+
 class enemy {
     public:
         // attributes of enemy
-        string name = names[rand() % 5];
+        string name;
+        string wordart[25];
         int xp;
         int coin;
         int damage;
         int health;
         // functions of enemy
-        void setAttribute(int Xp, int Coin, int Damage, int Health) {
-            *&xp = Xp;
-            *&coin = Coin;
-            *&damage = Damage;
-            *&health = Health;
+        void setAttribute(string Name, int Xp, int Coin, int Damage, int Health, string Wordart[]) {
+            name = Name;
+            xp = Xp;
+            coin = Coin;
+            damage = Damage;
+            health = Health;
+
         }
-        void enemyAttributes() {
-            if(name == "ogre"){
-                setAttribute(80, 100, 50, 1000);
-            }
-            else if(name == "Orc"){
-                setAttribute(90, 130, 30, 1500);
-            }
-            else if(name == "Creep"){
-                setAttribute(70, 90, 40, 900);
-            }
-            else if(name == "Monster"){
-                setAttribute(100, 120, 70, 1300);
-            }
-            else if(name == "Ghouls"){
-                setAttribute(75, 110, 90, 1100);
-            }
-        }
-        // functions of enemy
         int attack() {
             srand(time(NULL));
             if(rand() % 5 == 1){    // critical damage
@@ -170,12 +147,16 @@ class enemy {
             else if(rand() % 5 != 1) {  // normal damage
                 cout << name << " dealt " << damage << " damage to you!" << endl;
                 return damage;
-            } 
-            return damage;
+            }
         }
-        void healthDamageBar(int current, int damage) {
+        void printCharacter() {
+            for(int i = 0; i < 25; ++i) {
+                cout << wordart[i] << endl;
+            }
+        }
+        void healthBar(int current) {
             int bar = current / (health / 10);
-            cout << "\nEnemy HP = ";
+            cout << "Enemy HP = ";
             for(int i = 0; i < 10; ++i) {
                 if(i < bar){
                     cout << "*";
@@ -185,65 +166,22 @@ class enemy {
                 }
             }
             cout << " (" << current << "/" << health << ")" << endl;
-            cout<<" Enemy Damage = "<<damage<<endl;
         }
 };
 
-class boss {
-    public:
-        // attributes of enemy
-        string name = "Sauron the Destroyer";
-        int xp;
-        int coin;
-        int damage = 180;
-        int health = 2200;
-        // functions of enemy
-        void setAttribute(string Name, int Coin, int Damage, int Health, string Wordart[]) {
-            name = Name;
-            coin = Coin;
-            damage = Damage;
-            health = Health;
+void healthPotion(int heal, int & playerHealth){
+    playerHealth += heal;
+    cout << "You used a heal potion! Restored " <<  heal << " health" << endl;
+}
 
-        }
-        void introduction() {
-            cout<<"What are you doing here, little weakling? Do you want to die?"<<endl;
-            cout<<"I am going to tear you apart like the previous challengers that have come before!"<<endl;
-            cout<<"MWAHAHAHAHA"<<endl;
-        }
-        void halfHp (boss &final, int &boss_attack) {
-                cout<<final.name<<": \"I have not unleashed my full power upon you! Be prepared for your worst nightmare!!!\""<<endl;
-                cout<<final.name<<": \"AAAAAAAAAAAAAAAAA!!!\""<<endl;
-                boss_attack+=40;
-                final.crit_damage = 2;
-                cout<<"WARNING! WARNING! WARNING!\nOpponent's attack increases by 100, critical damage is now two times attack damage!\n\n";
-        }
-        double crit_damage = 1.8;
-        int attack(int crit_damage) {
-            srand(time(NULL));
-            if(rand() % 5 == 1){    // critical damage
-                cout << "Oof! " <<name << " dealt " << damage * crit_damage << " critical damage to you!" << endl;
-                return damage * 1.8;
-            } 
-            else if(rand() % 5 != 1) {  // normal damage
-                cout << name << " dealt " << damage << " damage to you!" << endl;
-                return damage;
-            } 
-            return damage;
-        }
-        void healthDamageBar(int current, int damage) {
-            int bar = current / (health / 10);
-            cout << "\nEnemy HP = ";
-            for(int i = 0; i < 10; ++i) {
-                if(i < bar){
-                    cout << "*";
-                }
-                else{
-                    cout << "-";
-                }
-            }
-            cout << " (" << current << "/" << health << ")" << endl;
-            cout<<"Enemy Damage = "<<damage<<endl;
-        }
-};
+void stunAttack(int & counter) {
+    counter += 1;
+    cout << "You used the stun potion! Enemy skips the next turn!" << endl;
+}
+
+void poisonArrow(int counter, int & enemyHealth) {
+    int turns = 3;
+    // not finished
+}
 
 #endif
