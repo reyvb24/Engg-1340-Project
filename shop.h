@@ -3,63 +3,31 @@
 #ifndef SHOP_H
 #define SHOP_H
 #include "character.h"
+#include "potions.h"
 
 using namespace std;
 
-const int amount_of_health_potions = 3;
-const int amount_of_attack_potions = 3;
-
-struct health_potion {
-    string name;
-    int health;
-    int price;
-};
-
-struct attack_potion {
-    string name;
-    int attack;
-    int price;
-    string descriptions;
-};
-
-struct hybrid_potion {
-    string name;
-    int attack;
-    int health;
-    int price;
-    string descriptions;
-};
-
-struct health_potion potions[amount_of_health_potions] = {{ "magic elixir", 10, 15}, { "magic cure", 20, 30}, { "super magical potion", 80, 100}};
-
-struct attack_potion attack_elixir[amount_of_health_potions] = {{ "stun attack", 5, 15, "skip your opponent's next turn"}, 
-{ "poison arrow", 10, 30, "reduce your opponent's health by 5 for the next three turns"}, 
-{"olympus blade", 100, 150, "the weapon dropped by the gods of greek"}};
-
-struct hybrid_potion hybrid = { "spirit of the gods", 5, 8, 100, "gives your hero enhanced strength and heal your hero for every turns of a battle" };
-
-
-void print_shop_items (health_potion potions[]) {
+void print_shop_items (health_potion potions[]) { //print health items
     for (int i = 0; i<amount_of_health_potions; i++) {
         cout<<i+1<<". "<<potions[i].name<<" , health gain = "<<potions[i].health<<", price = "<<potions[i].price<<endl;
     }
 }
 
-void print_attack_items (attack_potion attack_elixir[]) {
+void print_attack_items (attack_potion attack_elixir[]) { //print attack items
     for (int i = 0; i<amount_of_attack_potions; i++) {
         cout<<i+1<<". "<<attack_elixir[i].name<<" , attack boost = "<<attack_elixir[i].attack<<", price = "<<attack_elixir[i].price<<", description = "<<attack_elixir[i].descriptions<<endl;
     }
 }
-void check_inventory(player& player1, string user_choice) {
+void check_inventory(player& player1, string user_choice) { //check the player's inventory
     int space_available = 0;
     int choose_slot;
-    for (int i = 0; i<5; i++) {
+    for (int i = 0; i<5; i++) { //check the number of spaces available in inventory
         cout<<(i+1)<<" = "<<player1.inventory[i]<<endl;
         if (player1.inventory[i]=="none") {
             space_available++;
         }
     }
-    if (space_available>0) {
+    if (space_available>0) { //assign item to a slot if there is a space or more
         cout<<"which slot do you want to use?"<<endl<<"answer: ";
         cin>>choose_slot;
         while (choose_slot>5 or choose_slot<1 or player1.inventory[choose_slot-1]!="none") {
@@ -72,11 +40,11 @@ void check_inventory(player& player1, string user_choice) {
         player1.inventory[choose_slot-1] = user_choice;
         cout<<endl;
     }
-    else {
+    else { //prints if inventory full
         cout<<"your inventory is full, please use them first or discard an item. \n"<<endl;
     }
 }
-void print_list_of_items(player player1) {
+void print_list_of_items(player &player1) { //print shop items
     cout<<"#type the name of the potion to buy. ";
     cout<<"here is the list of things you can buy:"<<endl;
     cout<<"health potions:"<<endl;
@@ -84,20 +52,19 @@ void print_list_of_items(player player1) {
     cout<<endl<<"attack potions:"<<endl;
     print_attack_items(attack_elixir);
     cout<<endl<<"hybrid potions:"<<endl;
-    cout<<hybrid.name<<", attack boost: "<<hybrid.attack<<", health gain: "<<hybrid.health<<", descriptions: "<<hybrid.descriptions<<endl;
+    cout<<hybrid.name<<", attack boost: "<<hybrid.attack<<", health gain: "<<hybrid.health<<", price: "<<hybrid.price<<", descriptions: "<<hybrid.descriptions<<endl;
     cout<<endl<<"type 'quit' to quit shopping \n\n";
     cout<<"your coin: "<<player1.coin<<endl<<endl;
 }
-int main() {
+void shop(player &player1) { // main function of the shop
     string user_choice;
-    player player1;
     cout<<"welcome to shop!"<<endl;
     print_list_of_items(player1);
     cout<<"which potion do you want to buy: ";
     getline(cin, user_choice);
-    while (user_choice!="quit") {
-        int check = 0;
-        int check_enough_money = 0;
+    while (user_choice!="quit") { //enters while loop
+        int check = 0; //variable to determine if the user input an appropriate user
+        int check_enough_money = 0; //variable to check if the player has enough money to buy an item
         for (int i =0; i<amount_of_health_potions;i++) {
             if (potions[i].name==user_choice) {
                 if (player1.coin-potions[i].price>=0) {
