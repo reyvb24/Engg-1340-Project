@@ -8,6 +8,7 @@
 #define BATTLE_H 
 using namespace std;
 
+// Funtion purpose: prints out victory banner, does not take any arguments
 void victory() {
     cout<<"::::      ::::     ::::        .::::::::       :::::::::::       .:::::::.        ::::::::.        :::::       :::::"<<endl;
     cout<<" ::::    ::::      ::::        :::                 :::           :::   :::        ::     ::         :::::      ::::"<<endl;
@@ -15,7 +16,7 @@ void victory() {
     cout<<"    ::::::         ::::        :::                 :::           :::   :::        :::   :::                :::"<<endl;
     cout<<"     ::::          ::::        `::::::::           :::           `;;;;;;;'        ;;;   ;;;                :::"<<endl;
 }
-
+// Function purpose: checks mana availability for spell usage, takes the players spell choice and current mana to see if they have sufficient mana to cast spells
 bool checkMana (int mana, string choice) {
     if((choice == "heavy blow") && (mana < 40)) {
         return true;
@@ -37,6 +38,7 @@ bool checkMana (int mana, string choice) {
     }
 }
 
+// Function purpose: checks spell cooldown for spell usage, takes the players spell choice and current spell cooldown to see if the spells are of or on cooldown
 bool checkCooldown(string choice, int heavyBlowCD, int bloodlustCD, int fireBlastCD, int thunderWrathCD, int essenceBeamCD) {
     if((choice == "heavy blow") && (heavyBlowCD != 0)) {
         return true;
@@ -55,7 +57,7 @@ bool checkCooldown(string choice, int heavyBlowCD, int bloodlustCD, int fireBlas
     }
     return false;
 }
-
+// Function purpose: Calls the potion effects function acccording to the player's choice and then removes the potion from the player's inventory
 void useItems(string choice, int & playerHealth, int & enemyHealth, int & counter, player& player1, int poisonCounter, int & additonalDamage, int &playerdamage) {
     int check = 0;	     
     if (choice!="none") {
@@ -125,6 +127,8 @@ void useItems(string choice, int & playerHealth, int & enemyHealth, int & counte
         }
     }
 }
+
+// Function purpose: Calls the spell effects function acccording to the player's choice
 void useSpells(string choice, int & mana, int & enemyHealth, int & heavyBlowCD, int & bloodlustCD, int & fireBlastCD, int & thunderWrathCD, int & essenceBeamCD, int & counter, int & thunderCounter) {
     if(choice == "heavy blow") {
         heavyBlow(heavyBlowCD, mana);
@@ -143,6 +147,7 @@ void useSpells(string choice, int & mana, int & enemyHealth, int & heavyBlowCD, 
     }
 }
 
+// Function purpose: the main battle function which handles battles in the game. It takes the player and enemy class as arguments.
 void battle(enemy &creep, player &player1){
     //battle mechanic variables
     int counter = 0;
@@ -308,7 +313,7 @@ void battle(enemy &creep, player &player1){
         cout << "Whew, Got out of there safely!" << endl;
     }
 }
-int final_battle(boss &final, player &player1){ //the codes here are pretty much the same as in function battle
+int final_battle(boss &final, player &player1){
     cout << "You have decided to fight " << final.name << " to save the village from terror!" << endl <<"We wish all the best for you, "<<player1.name<<"!"<<endl;
     print_warrior();
     print_boss();
@@ -459,14 +464,13 @@ int final_battle(boss &final, player &player1){ //the codes here are pretty much
             counter += 1;
         }
     }
-    if(enemyHealth <= 0) { //if the player emerge victorious
+    if(enemyHealth <= 0) {
         victory();
         cout<<endl;
-        cout << "Great work! You have saved the village from " << final.name << "!" << endl;
-	cout<<"Villagers: 'We thank you abundantly from the bottom of our hearts!'" <<endl;
+        cout << "Great work! You have saved the village from " << final.name << endl;
         return true;
     }
-    else if(playerHealth <= 0) { //if the player lose
+    else if(playerHealth <= 0) {
         cout << "Game Over! Try again later!" << endl << endl;
         return false;
     }
