@@ -17,19 +17,19 @@ void victory() {
 }
 
 bool checkMana (int mana, string choice) {
-    if((choice == "Heavy blow") || (mana < 40)) {
+    if((choice == "heavy blow") && (mana < 40)) {
         return true;
     }
-    else if((choice == "Bloodlust") || (mana < 35)) {
+    else if((choice == "bloodlust") && (mana < 35)) {
         return true;
     }
-    else if((choice == "Fire blast") || (mana < 25)){
+    else if((choice == "fire blast") && (mana < 25)){
         return true;
     }
-    else if((choice == "Thunder wrath") || (mana < 70)) {
+    else if((choice == "thunder wrath") && (mana < 70)) {
         return true;
     }
-    else if((choice == "Essence beam") || (mana < 100)) {
+    else if((choice == "essence beam") && (mana < 100)) {
         return true;
     }
     else {
@@ -38,19 +38,19 @@ bool checkMana (int mana, string choice) {
 }
 
 bool checkCooldown(string choice, int heavyBlowCD, int bloodlustCD, int fireBlastCD, int thunderWrathCD, int essenceBeamCD) {
-    if((choice == "Heavy blow") && (heavyBlowCD != 0)) {
+    if((choice == "heavy blow") && (heavyBlowCD != 0)) {
         return true;
     }
-    else if((choice == "Bloodlust") && (bloodlustCD != 0)) {
+    else if((choice == "bloodlust") && (bloodlustCD != 0)) {
         return true;
     }
-    else if((choice == "Fire blast") && (fireBlastCD != 0)){
+    else if((choice == "fire blast") && (fireBlastCD != 0)){
         return true;
     }
-    else if((choice == "Thunder wrath") && (thunderWrathCD != 0)) {
+    else if((choice == "thunder wrath") && (thunderWrathCD != 0)) {
         return true;
     }
-    else if((choice == "Essence beam") && (essenceBeamCD != 0)) {
+    else if((choice == "essence beam") && (essenceBeamCD != 0)) {
         return true;
     }
     return false;
