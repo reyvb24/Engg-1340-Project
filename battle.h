@@ -283,7 +283,6 @@ void battle(enemy &creep, player &player1){
         }
         else if (counter % 2 == 1) { // enemy's move
             cout << "-----------------------------------------------------------------------------------------" << endl;
-            creep.healthDamageBar(enemyHealth, creep.damage);
             playerHealth -= creep.attack();
             counter += 1;
         }
