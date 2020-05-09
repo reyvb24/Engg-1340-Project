@@ -76,13 +76,29 @@ class player {
             }
         }
         void showSpells() { // show avaliable spells according to class 
-            cout<<"\n----------------------------------"<<endl;
-            cout<<"Here is the list of spells you can use: "<<endl;
-            cout<<"1. heavy blow"<<endl;
-            cout<<"2. bloodlust"<<endl;
-            cout<<"3. fire blast"<<endl;
-            cout<<"4. thunder wrath"<<endl;
-            cout<<"5. essence beam\n----------------------------------\n"<<endl;
+            cout << "-----------------------------------------------------------------------------------------" << endl;
+            cout << "heavy blow" << endl;
+            cout << "Description: Gathers strength to swing, adds 2.5x critical damage for your next attack" << endl;
+            cout << "Note: Buff expires if not used in next attack" << endl;
+            cout << "Cost: 40 mana | Cooldown: 5 turns" << endl;
+            cout << "-----------------------------------------------------------------------------------------" << endl;
+            cout << "bloodlust" << endl;
+            cout << "Description: Empowered by enemy blood, adds 25 percent lifesteal to your next attack" << endl;
+            cout << "Note: Buff expires if not used in next attack" << endl;
+            cout << "Cost: 35 mana | Cooldown: 5 turns" << endl;
+            cout << "-----------------------------------------------------------------------------------------" << endl;
+            cout << "fire blast" << endl;
+            cout << "Description: A powerful spell with low cooldown, deals 75 damage" << endl;
+            cout << "Cost: 25 mana | Cooldown: 3 turns" << endl;
+            cout << "-----------------------------------------------------------------------------------------" << endl;
+            cout << "thunder wrath" << endl;
+            cout << "Description: Calls a nimbus cloud to battle, deals 40 damage to enemies for 4 turns" << endl;
+            cout << "Cost: 70 mana | Cooldown: 7 turns" << endl;
+            cout << "-----------------------------------------------------------------------------------------" << endl;
+            cout << "essence beam" << endl;
+            cout << "Description: Concentrates surrounding magical essence, deals 300 damage and stuns" << endl;
+            cout << "Cost: 100 mana | Cooldown: 9 turns" << endl;
+            cout << "-----------------------------------------------------------------------------------------" << endl;
         }
         void healthManaDamageBar(int currentHealth, int currentMana, int currentDamage) {
             int healthbar = currentHealth / (health / 10);
@@ -111,11 +127,10 @@ class player {
             cout<<currentDamage<<endl;
         }
 };
-
+string names [5] = {"Ogre", "Orc", "Creep", "Monster", "Ghouls"};
 class enemy {
     public:
         // attributes of enemy
-        string names [5] = {"Ogre", "Orc", "Creep", "Monster", "Ghouls"};
         string name = names[rand() % 5];
         int xp;
         int coin;
